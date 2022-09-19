@@ -29,6 +29,12 @@ class RandomChar extends Component { // основное компонент - к
         })
     }
 
+    onCharLoading() { // метод показывает спинер, при переключении "try it", помещается в updateChar
+        this.setState({
+            loading: true
+        })
+    }
+
     onError = () => { // изменяет состояние ошибки
         this.setState({
             loading: false,
@@ -38,6 +44,7 @@ class RandomChar extends Component { // основное компонент - к
 
     updateChar = () => { // рандомный персонаж
         let id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
+        this.onCharLoading();
         this.marvelService
             .getCharacter(id)
             .then(this.onCharLoaded)

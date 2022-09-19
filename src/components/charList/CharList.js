@@ -18,7 +18,7 @@ class CharList extends Component {
             .then(this.onCharListLoaded)
             .catch(this.onError)
     }
-    
+
     onCharListLoaded = (charList) => { // изменяет состояние спинера
         this.setState({
             charList, 
@@ -46,17 +46,16 @@ class CharList extends Component {
                         <div className="char__name">{item.name}</div>
                 </li>
             )
-
         });
 
         return(
             <ul className="char__grid">
                 {items}
-            </ul>
+            </ul> 
         )
     }
-
-
+    
+    
     render() {
         const {charList, loading, error} = this.state;
 
