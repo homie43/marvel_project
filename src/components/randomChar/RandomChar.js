@@ -84,9 +84,8 @@ const View = ({char}) => { // простой компонент рендера, 
     const {name, description, thumbnail, homepage, wiki} = char;
     let imgStyle = {'objectFit' : 'cover'};
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
-        imgStyle = {'objectFit' : 'contain'};
+        imgStyle = {'objectFit' : 'unset'};
     }
-
     return (
         <div className="randomchar__block">
             <img src={thumbnail} alt="Random character" className="randomchar__img" style={imgStyle}/>
