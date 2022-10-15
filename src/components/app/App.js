@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState } from "react"; 
 import AppHeader from "../appHeader/AppHeader";
 import RandomChar from "../randomChar/RandomChar";
 import CharList from "../charList/CharList";
@@ -6,36 +6,33 @@ import CharInfo from "../charInfo/CharInfo";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 
 import decoration from '../../resources/img/vision.png';
+import ComicsList from "../comicsList/ComicsList";
 
-class App extends Component {
-    state = {
-        selectedChar: null
-    }
+const App = () => {
+    const [selectedChar, setSelectedChar] = useState(null);
 
-    onCharSelected = (id) => {
-        this.setState({
-            selectedChar: id
-        })
+    const onCharSelected = (id) => {
+        setSelectedChar(id)
     }
-
-    render() {
-        return (
-            <div className="app">
-                <AppHeader/>
-                <main>
-                    <RandomChar/>
-                    <div className="char__content">
-                        <CharList onCharSelected={this.onCharSelected} /> 
-                        {/* пропс приходит из CharList, устанавливается в state и дальше спускается в CharInfo */}
-                        <ErrorBoundary>
-                            <CharInfo charId={this.state.selectedChar} />
-                        </ErrorBoundary>
-                    </div>
-                    <img className="bg-decoration" src={decoration} alt="vision"/>
-                </main>
-            </div>
-        )
-    }
+    
+    return (
+        <div className="app">
+            <AppHeader/>
+            <main>
+                {/* <RandomChar/>
+                <div className="char__content">
+                    <CharList onCharSelected={onCharSelected} /> 
+                    <ErrorBoundary>
+                        <CharInfo charId={selectedChar} />
+                    </ErrorBoundary>
+                </div>
+                <img className="bg-decoration" src={decoration} alt="vision"/> */}
+                <ErrorBoundary>
+                    <ComicsList/>
+                </ErrorBoundary>
+            </main>
+        </div>
+    )
 }
 
 export default App;
