@@ -8,16 +8,15 @@ import AppBanner from "../appBanner/AppBanner";
 import './singleComicPage.scss';
 
 const SingleComicPage = () => {
-    const comicId = useParams();
+    const {comicId} = useParams();
     const [comic, setComic] = useState(null);
     
     const {loading, error, getComic, clearError} = useMarvelService();
     
     useEffect(() => {
-        updateComic();
-    }, [comicId]);
+        updateComic()
+    }, [comicId])
 
-    // метод для запросов на сервер
     const updateComic = () => {
         clearError();
         getComic(comicId)
@@ -25,7 +24,7 @@ const SingleComicPage = () => {
     }
 
     const onComicLoaded = (comic) => {
-        setComic(comic)
+        setComic(comic);
     }
 
     const errorMessage = error ? <ErrorMessage/> : null;
