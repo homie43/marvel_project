@@ -7,14 +7,14 @@ const AppHeader = () => {
         <header className="app__header">
             <h1 className="app__title">
                 <Link to="/marvel_build">
-                    <span>Marvel</span> information portal
+                    информационный портал <span>Marvel</span>
                 </Link>
             </h1>
             <nav className="app__menu">
                 <ul>
-                    <li><NavLink exact activeStyle={{'color': '#9f0013'}} to="/marvel_build">Characters</NavLink></li>
+                    <li><NavLink end style={({isActive}) => ({color: isActive ? '#9f0013' : 'inherit'})} to="/marvel_build">Персонажи</NavLink></li>
                     /
-                    <li><NavLink exact activeStyle={{'color': '#9f0013'}} to="/comics">Comics</NavLink></li>
+                    <li><NavLink end style={({isActive}) => ({color: isActive ? '#9f0013' : 'inherit'})} to="/comics">Комиксы</NavLink></li>
                 </ul>
             </nav>
         </header>

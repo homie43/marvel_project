@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import useMarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
+import {Link} from "react-router-dom";
 import './comicsList.scss';
 
 const ComicsList = () => {
@@ -12,7 +13,7 @@ const ComicsList = () => {
     const [offset, setOffset] = useState(0);
     const [comicsEnded, setComicsEnded] = useState(false);
 
-    const {loading, error, getAllComics, cleanError} = useMarvelService();
+    const {loading, error, getAllComics, clearError} = useMarvelService();
 
     useEffect(() => {
         onRequest(offset, true);
@@ -31,7 +32,7 @@ const ComicsList = () => {
         if (newComicsList.length < 8) {
             ended = true
         }
-        cleanError()
+        clearError()
         setComicsList([...comicsList, ...newComicsList]); // то есть в comicsList содержится старый comicsList и порция новых данных newComicsList
         setNewItemLoading(false);
         setOffset(offset + 8);
@@ -43,11 +44,11 @@ const ComicsList = () => {
         const items = arr.map((item, i) => {
             return(
                 <li className="comics__item" key={i}>
-                    <a href="#">
+                    <Link to={`/comics/${item.id}`}>
                         <img src={item.thumbnail} alt={item.title} className="comics__item-img"/>
                         <div className="comics__item-name">{item.title}</div>
                         <div className="comics__item-price">{item.price}</div>
-                    </a>
+                    </Link>
                 </li>
             )
         });
@@ -74,7 +75,7 @@ const ComicsList = () => {
                 disabled={newItemLoading}
                 style={{'display': comicsEnded ? 'none' : 'block'}}
                 onClick={() => onRequest(offset)}>
-                <div className="inner">load more</div>
+                <div className="inner">Загрузить еще</div>
             </button>
         </div>
     )

@@ -61,8 +61,6 @@ const CharList = (props) => {
             </ul> 
         )
     }
-    
-    console.log('charList!')
 
     const items = renderItems(charList);
 

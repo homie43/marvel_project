@@ -34,13 +34,13 @@ const useHttp = () => {
 
     }, []);
     // чистка ошибки, уберет ошибку и загрузит персонажа
-    const cleanError = useCallback(() => setError(null), []);
+    const clearError = useCallback(() => setError(null), []);
 
     return {
         loading, 
         error, 
         request, 
-        cleanError
+        clearError
     }
 }
 
